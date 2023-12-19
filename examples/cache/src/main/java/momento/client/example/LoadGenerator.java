@@ -193,7 +193,7 @@ public class LoadGenerator {
     } else {
       requestPercentage = (double) requests / totalRequests * 100;
     }
-    return String.format("%18s: %d (%.2f)", name, requests, requestPercentage);
+    return String.format("%18s: %d (%.2f%%)", name, requests, requestPercentage);
   }
 
   private double formatTps(long totalRequests) {
@@ -235,7 +235,7 @@ public class LoadGenerator {
     // the load test. Smaller payloads will generally provide lower latencies than
     // larger payloads.
     //
-    final int cacheItemPayloadBytes = 100;
+    final int cacheItemPayloadBytes = 200;
     //
     // Controls the number of concurrent requests that will be made (via asynchronous
     // function calls) by the load test. Increasing this number may improve throughput,
@@ -244,18 +244,18 @@ public class LoadGenerator {
     // may increase.
     // Note: You are likely to see degraded performance if you increase this above 50
     // and observe elevated client-side latencies.
-    final int numberOfConcurrentRequests = 50;
+    final int numberOfConcurrentRequests = 100;
     //
     // Sets an upper bound on how many requests per second will be sent to the server.
     // Momento caches have a default throttling limit of 100 requests per second,
     // so if you raise this, you may observe throttled requests. Contact
     // support@momentohq.com to inquire about raising your limits.
     //
-    final int maxRequestsPerSecond = 50;
+    final int maxRequestsPerSecond = 20_000;
     //
     // Controls how long the load test will run.
     //
-    final int howLongToRunSeconds = 60;
+    final int howLongToRunSeconds = 60 * 5;
     //
     // Controls how long the load generator will run before resetting the histogram.
     // Removes outlier times due to client connection or code loading/jit.
